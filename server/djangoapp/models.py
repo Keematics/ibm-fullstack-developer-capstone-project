@@ -41,7 +41,7 @@ class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake,null=True, on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name + " " + self.type + " " + str(self.year)
+        return self.name + " " + self.car_type + " " + str(self.year)
 
 
 # <HINT> Create a plain Python class `CarDealer` to hold dealer data
