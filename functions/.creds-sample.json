@@ -1,5 +1,6 @@
 {
     "COUCH_URL": "https://b152401c-44a8-41b0-8403-13c6f9e9122a-bluemix.cloudantnosqldb.appdomain.cloud",
     "IAM_API_KEY": "dwEtEKPELaBio2jJmPRbdia-qqig1Z0RrZ9bztjM0m1_",
-    "COUCH_NAME": "b152401c-44a8-41b0-8403-13c6f9e9122a-bluemix"
+    "COUCH_NAME": "b152401c-44a8-41b0-8403-13c6f9e9122a-bluemix",
+    "dealershipsendpoint": "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/dealership-package/get-dealership.json"
 }
