@@ -102,17 +102,20 @@ def get_dealerships(request):
 
 
 # # Create a `get_dealer_details` view to render the reviews of a dealer
-def get_dealer_details(request, dealer_id,dealer_name):
+def get_dealer_details(request, dealer_id):
     if request.method == "GET":
-        context = {}        
-        url = "https://us-south.functions.appdomain.cloud/api/v1/web/08c5912a-d3c3-4838-9ab3-5be482070298/dealership-package/get-review?dealerId="+str(dealer_id)
+        context = {}
+        dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/api/dealership"
+        dealer = get_dealers_from_cf(dealer_url, dealerId=dealer_id)
+        context['dealer'] = dealer
         # Get dealers from the URL
-        reviews = get_dealer_reviews_from_cf(url)
-       # Get dealers from the URL
-        context['reviews'] = get_dealer_by_id(url,dealer_id)
-        context['dealerid'] = dealer_id
-        context['dealer'] = dealer_name
-        return render(request,'djangoapp/dealer_details.html', context)
+        review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/api/review"
+        reviews = get_dealer_reviews_from_cf(review_url, dealerId=dealer_id)
+        print(reviews)
+        context['reviews'] = reviews
+        context['dealer_id'] = dealer_id
+        # Return a list of dealer short name
+        return render(request, 'djangoapp/dealer_details.html', context)
 
 
 # # Create a `add_review` view to submit a review
