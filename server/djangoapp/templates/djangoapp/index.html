@@ -65,6 +65,7 @@
             {% for dealer in dealership %}
             <tr>
                 <td>{{dealer.id}}</td>
+                <td>{{dealer.full_name}}</td>
                 <td>{{dealer.city}}</td>
                 <td>{{dealer.address}}</td>
                 <td>{{dealer.zip}}</td>
@@ -83,4 +84,9 @@
       </footer>
     </body>
 
+    <script>
+        $(function() {
+            $('#table').bootstrapTable()
+        })
+    </script>
 </html>

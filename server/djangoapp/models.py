@@ -66,6 +66,7 @@ class CarDealer:
         self.st = st
         # Dealer zip
         self.zip = zip
+        # Dealer
 
     def __str__(self):
         return "Dealer name: " + self.full_name
