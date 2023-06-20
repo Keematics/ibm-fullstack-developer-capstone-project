@@ -95,7 +95,7 @@ def registration_request(request):
 def get_dealerships(request):
     if request.method == "GET":
         context = {}
-        url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/dealership-package/get-dealership.json"
+        url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/dealership-package/get-dealership"
         # Get dealers from the URL
         context["dealership"] = get_dealers_from_cf(url)
         return render(request,'djangoapp/index.html', context)
@@ -105,11 +105,11 @@ def get_dealerships(request):
 def get_dealer_details(request, dealer_id):
     if request.method == "GET":
         context = {}
-        dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/dealership-package/get-dealership.json"
+        dealer_url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/dealership-package/get-dealership"
         dealer = get_dealers_from_cf(dealer_url, dealerId=dealer_id)
         context['dealer'] = dealer
         # Get dealers from the URL
-        review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/dealership-package/get-review.json"
+        review_url = "https://us-south.functions.appdomain.cloud/api/v1/web/25b46dc5-afe5-4d9b-879a-ce39d119507f/dealership-package/get-review"
         reviews = get_dealer_reviews_from_cf(review_url, dealerId=dealer_id)
         print(reviews)
         context['reviews'] = reviews
