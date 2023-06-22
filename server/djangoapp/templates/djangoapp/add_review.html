@@ -12,5 +12,35 @@
 </head>
     <body>
     <!--Add review form here -->
+    <form action="{% url 'djangoapp:add-review' dealer_id %}" method="post">
+        <div class="container">
+            {% csrf_token %}
+            <h1>Write a review for {{dealer.full_name}}</h1>
+            <hr>
+            <div class="mb-3">
+                <label for="review"><b>Enter the review content:</b></label>
+                <textarea class="form-control" id="review" name="review" rows="2" required></textarea>
+                <div class="form-check">
+                <br><input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+                <label class="form-check-label" for="purchasecheck"><b>Has purchased the car from {{dealer.full_name}} ? </b><br></label>
+                <br>
+                <br> 
+                </div>
+                <div class="mb-3">
+                    <label for="car"><b>Select your Car(model-make-year):</b></label>
+                    <select name="car" id="car" class="form-select" required>
+                        {% for car in cars %}
+                        <option selected value={{car.id}}>{{car.car_make.name}}--{{car.name}}--{{ car.year }}</option>
+                        {% endfor %}
+                    </select> 
+
+                </div>
+                <label for="purchase_date"><b>Select Your Purchase Date:</b></label><br>
+                <input type="date" class="form-control" name="purchasedate" >
+                <hr/>  <br>                 
+                <button class="btn btn-primary" type="submit" formmethod="post">Submit</button>
+            </div>
+        </div>
+    </form>
     </body>
 </html>
