@@ -72,7 +72,7 @@ def get_dealer_reviews_from_cf(url, **kwargs):
         json_result = get_request(url)
    
     if json_result:
-        # print("PRINTING JSON RESULT >>> {} " .format(json_result))
+        print("PRINTING JSON RESULT >>> {} " .format(json_result))
         reviews = json_result["data"]["docs"]
         for review in reviews:
             dealer_review = review
@@ -104,19 +104,18 @@ def get_dealer_reviews_from_cf(url, **kwargs):
     return results
 
 
-def get_dealer_by_id_from_cf(url, **kwargs):
-    # Call get_request with a URL parameter
-    json_result = get_request(url, **kwargs)
+def get_dealer_by_id_from_cf(url, id):
+    json_result = get_request(url, id=id)
     if json_result:
         # Get the row list in JSON as dealers
-        dealers = json_result["row"]
+        dealers = json_result
         for dealer in dealers:
-            dealer_doc = dealer["doc"]
+            # print("PRINTING DEALER >>> {} " .format(dealer))
             # Create a CarDealer object with values in `doc` object
-            dealer_obj = CarDealer(address=dealer_doc["address"], city=dealer_doc["city"], full_name=dealer_doc["full_name"],
-                         id=dealer_doc["id"], lat=dealer_doc["lat"], long=dealer_doc["long"],
-                         short_name=dealer_doc["short_name"], state=dealer_doc["state"],
-                         st=dealer_doc["st"], zip=dealer_doc["zip"])
+            dealer_obj = CarDealer(address=dealer["address"], city=dealer["city"], full_name=dealer["full_name"],
+                         id=dealer["id"], lat=dealer["lat"], long=dealer["long"],
+                         short_name=dealer["short_name"],
+                         st=dealer["st"], zip=dealer["zip"])
             results = dealer_obj
     return results
     

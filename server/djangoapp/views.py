@@ -125,10 +125,11 @@ def add_review(request, dealer_id):
     context = {}
     dealer = get_dealer_by_id_from_cf(dealer_url, dealer_id)
     context['dealer'] = dealer
+    context["dealer_id"] = dealer_id
     if request.method == 'GET':
         cars = CarModel.objects.all()
-        print(cars)
         context['cars'] = cars
+        # print("PRINTING CARS {} " .format(cars))
         return render(request, 'djangoapp/add_review.html', context)
     elif request.method == 'POST':
         if request.user.is_authenticated:
@@ -141,7 +142,7 @@ def add_review(request, dealer_id):
             review["name"] = username
             review["dealership"] = dealer_id
             review["id"] = dealer_id
-            review["review"] = request.POST["content"]
+            review["content"] = request.POST["content"]
             review["purchase"] = False
             if "purchasecheck" in request.POST:
                 if request.POST["purchasecheck"] == 'on':
